@@ -29,7 +29,9 @@ Usage
     elif args[0] == "approx" and len(args) == 2:
         phi_approx(int(args[1]))
     elif args[0] == "converge" and len(args) == 1:
-        phi_converge()
+        f = open(args[0], 'a')
+        f.write(phi_converge())
+        f.close() 
     else:
         print "Error: input not understood.\n" \
                 "    Type './fib.py help' for info on this program."
@@ -73,12 +75,13 @@ def phi_converge():
 
     i = 3
     phi_old = phi_approx(i - 1, show_output=False)
-    phi_new = phi_approx(i)
+    phi_new = phi_approx(i, show_output = False)
+    result = "" # resulting string to return
     while phi_old != phi_new:
         i += 1
         phi_old = phi_new
         phi_new = phi_approx(i, show_output=False)
-        print phi_converge_output_format.format(i, phi_new, phi_old)
-    print "\nConverged to %.25f" % phi_new
+        result += phi_converge_output_format.format(i, phi_new, phi_old) + "\n"
+    return result + "\nConverged to %.25f" % phi_new
 
 if __name__ == '__main__': main()
