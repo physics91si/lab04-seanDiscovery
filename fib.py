@@ -25,17 +25,16 @@ Usage
   - './fib.py help': display this help message.
 
 """
-        print help_message
+        print(help_message)
     elif args[0] == "approx" and len(args) == 2:
         phi_approx(int(args[1]))
-    elif args[0] == "converge" and len(args) == 1:
-        f = open(args[0], 'a')
+    elif args[0] == "converge" and len(args) == 2:
+        f = open(args[1], 'a')
         f.write(phi_converge())
         f.close() 
     else:
-        print "Error: input not understood.\n" \
-                "    Type './fib.py help' for info on this program."
-
+        print("Error: input not understood.\n" \
+                "    Type './fib.py help' for info on this program.")
 def fib(n):
     """Return nth element of the Fibonacci sequence."""
     # Create the base case
@@ -61,7 +60,7 @@ def phi_approx(n, show_output=True):
     fib_nm1 = fib(n - 1)
     phi = float(fib_n)/fib_nm1
     if show_output:
-        print phi_approx_output_format.format(n, fib_n, fib_nm1, phi)
+        print(phi_approx_output_format.format(n, fib_n, fib_nm1, phi))
     return phi
 
 phi_converge_output_format = \
@@ -84,4 +83,6 @@ def phi_converge():
         result += phi_converge_output_format.format(i, phi_new, phi_old) + "\n"
     return result + "\nConverged to %.25f" % phi_new
 
+    print(phi_converge_output_format.format(i, phi_new, phi_old))
+    print("\nConverged to %.25f" % phi_new)
 if __name__ == '__main__': main()
